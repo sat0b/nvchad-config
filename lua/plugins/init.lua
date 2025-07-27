@@ -16,13 +16,15 @@ return {
   {
     "tpope/vim-fugitive",
     lazy = false,
+    config = function()
+      require "configs.fugitive"
+    end,
   },
 
   {
     "NikitaIvanovV/vim-markdown-outline",
     ft = "markdown", 
     config = function()
-      -- デフォルトマッピングを有効化
       vim.g.markdown_outline_no_mappings = 0
     end,
   },
@@ -165,13 +167,9 @@ return {
     ft = { "markdown" },
     build = function() vim.fn["mkdp#util#install"]() end,
     config = function()
-      -- ブラウザを自動的に開く
       vim.g.mkdp_auto_start = 0
-      -- プレビューを自動的に閉じる
       vim.g.mkdp_auto_close = 1
-      -- ブラウザを指定（デフォルトブラウザを使用）
       vim.g.mkdp_browser = ''
-      -- プレビューオプション
       vim.g.mkdp_preview_options = {
         mkit = {},
         katex = {},
@@ -189,46 +187,34 @@ return {
   },
 
   {
-    "coder/claudecode.nvim",
-    lazy = false,
+    "sat0b/markdown-note.nvim",
+    event = "VeryLazy",
     config = function()
-      require("claudecode").setup({
-        -- サイドバーの位置を設定 ('left' または 'right')
-        sidebar_position = "left",
-        -- サイドバーの幅を設定
-        sidebar_width = 40,
-        -- その他の設定オプション
-        -- auto_focus = false,  -- 自動フォーカスを無効化
-        -- keymaps = {          -- キーマップのカスタマイズ
-        --   toggle = "<leader>cc",
-        --   submit = "<C-Enter>",
-        -- }
+      require("markdown-note").setup({
       })
     end,
   },
 
   {
-    "nvim-orgmode/orgmode",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-    },
-    event = 'VeryLazy',
-    ft = { 'org' },
+    "coder/claudecode.nvim",
+    lazy = false,
     config = function()
-      require "configs.orgmode"
+      require("claudecode").setup({
+        sidebar_position = "left",
+        sidebar_width = 40,
+      })
     end,
   },
 
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+
 
   {
   	"nvim-treesitter/nvim-treesitter",
   	opts = {
   		ensure_installed = {
   			"vim", "lua", "vimdoc",
-       "html", "css", "markdown", "markdown_inline"
+       "html", "css", "markdown", "markdown_inline", "norg"
   		},
   	},
   },

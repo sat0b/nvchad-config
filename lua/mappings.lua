@@ -35,3 +35,24 @@ map("n", "gO", "<Plug>MarkdownOutline", { desc = "Markdown outline", buffer = tr
 map("n", "<leader>lg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 map("n", "<leader>lf", "<cmd>LazyGitCurrentFile<cr>", { desc = "LazyGit current file" })
 map("n", "<leader>lc", "<cmd>LazyGitConfig<cr>", { desc = "LazyGit config" })
+
+-- fugitive mappings
+map("n", "<leader>gs", "<cmd>Git<cr>", { desc = "Git status" })
+map("n", "<leader>gd", function()
+  local width = vim.o.columns
+  if width < 160 then
+    vim.cmd("Gdiffsplit --horizontal")
+  else
+    vim.cmd("Gdiffsplit")
+  end
+end, { desc = "Git diff (smart split)" })
+map("n", "<leader>gD", "<cmd>DiffToggleSplit<cr>", { desc = "Toggle diff split orientation" })
+map("n", "<leader>gb", "<cmd>Git blame<cr>", { desc = "Git blame" })
+
+-- Neorg mappings
+map("n", "<leader>nn", "<cmd>Neorg workspace notes<cr>", { desc = "Neorg notes workspace" })
+map("n", "<leader>nw", "<cmd>Neorg workspace work<cr>", { desc = "Neorg work workspace" })
+map("n", "<leader>np", "<cmd>Neorg workspace personal<cr>", { desc = "Neorg personal workspace" })
+map("n", "<leader>nj", "<cmd>Neorg journal today<cr>", { desc = "Neorg journal today" })
+map("n", "<leader>ni", "<cmd>Neorg index<cr>", { desc = "Neorg index" })
+map("n", "<leader>nr", "<cmd>Neorg return<cr>", { desc = "Neorg return" })
