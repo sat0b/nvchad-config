@@ -49,10 +49,11 @@ end, { desc = "Git diff (smart split)" })
 map("n", "<leader>gD", "<cmd>DiffToggleSplit<cr>", { desc = "Toggle diff split orientation" })
 map("n", "<leader>gb", "<cmd>Git blame<cr>", { desc = "Git blame" })
 
--- Neorg mappings
-map("n", "<leader>nn", "<cmd>Neorg workspace notes<cr>", { desc = "Neorg notes workspace" })
-map("n", "<leader>nw", "<cmd>Neorg workspace work<cr>", { desc = "Neorg work workspace" })
-map("n", "<leader>np", "<cmd>Neorg workspace personal<cr>", { desc = "Neorg personal workspace" })
-map("n", "<leader>nj", "<cmd>Neorg journal today<cr>", { desc = "Neorg journal today" })
-map("n", "<leader>ni", "<cmd>Neorg index<cr>", { desc = "Neorg index" })
-map("n", "<leader>nr", "<cmd>Neorg return<cr>", { desc = "Neorg return" })
+-- Markdown notes mappings
+map("n", "<leader>nn", "<cmd>NoteNew<cr>", { desc = "Create new note" })
+map("n", "<leader>nq", ":NoteQuick ", { desc = "Quick note (enter title)" })
+map("n", "<leader>nt", "<cmd>NoteToday<cr>", { desc = "Today's note" })
+map("n", "<leader>nl", "<cmd>NoteList<cr>", { desc = "List all notes" })
+map("n", "<leader>np", "<cmd>NoteProjects<cr>", { desc = "Browse projects" })
+map("n", "<leader>nf", "<cmd>NoteFindFile<cr>", { desc = "Find note files" })
+map("n", "<leader>ng", "<cmd>NoteGrep<cr>", { desc = "Search in notes" })
