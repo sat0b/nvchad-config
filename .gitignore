@@ -1,0 +1,6 @@
+lazy-lock.json
+/lazy/
+*.swp
+*.swo
+.DS_Store
+/base46/
