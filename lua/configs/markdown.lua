@@ -73,6 +73,13 @@ vim.api.nvim_create_autocmd("FileType", {
     -- Better concealing for markdown
     vim.opt_local.conceallevel = 2
     vim.opt_local.concealcursor = "nc"
+    
+    -- Enable syntax highlighting in code blocks
+    vim.g.markdown_fenced_languages = {
+      'html', 'python', 'bash=sh', 'javascript', 'js=javascript',
+      'typescript', 'ts=typescript', 'lua', 'vim', 'css', 'json',
+      'yaml', 'rust', 'go', 'c', 'cpp', 'java'
+    }
   end,
 })
 
