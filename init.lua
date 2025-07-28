@@ -36,5 +36,4 @@ require "autocmds"
 vim.schedule(function()
   require "mappings"
   require "configs.git"
-  require("configs.markdown-fold").setup()
 end)

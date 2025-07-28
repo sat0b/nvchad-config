@@ -14,6 +14,43 @@ map("n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "Show reference
 map("n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Show hover information" })
 map("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", { desc = "Rename symbol" })
 
+-- UFO folding
+map("n", "zR", function() require("ufo").openAllFolds() end, { desc = "Open all folds" })
+map("n", "zM", function() require("ufo").closeAllFolds() end, { desc = "Close all folds" })
+map("n", "zr", function() require("ufo").openFoldsExceptKinds() end, { desc = "Open folds except kinds" })
+map("n", "zm", function() require("ufo").closeFoldsWith() end, { desc = "Close folds with" })
+
+
+-- Markdown specific folding
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "markdown",
+  callback = function()
+    -- Use Enter to toggle folds on lists and headings
+    map("n", "<CR>", function()
+      local line = vim.fn.getline('.')
+      -- Check if we're on a list item or heading
+      if line:match('^%s*[-*+]') or line:match('^%s*%d+%.') or line:match('^#') then
+        require('ufo').peekFoldedLinesUnderCursor()
+        if vim.fn.foldclosed('.') ~= -1 then
+          vim.cmd('normal! zo')
+        else
+          vim.cmd('normal! zc')
+        end
+      else
+        vim.cmd('normal! za')
+      end
+    end, { desc = "Toggle fold", buffer = true })
+    
+    -- Preview folded content
+    map("n", "K", function()
+      local winid = require('ufo').peekFoldedLinesUnderCursor()
+      if not winid then
+        vim.lsp.buf.hover()
+      end
+    end, { desc = "Peek fold or hover", buffer = true })
+  end,
+})
+
 -- Markdown outline mapping
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",

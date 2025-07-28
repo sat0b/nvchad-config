@@ -195,6 +195,25 @@ return {
     end,
   },
 
+
+  -- Better folding with list support
+  {
+    "kevinhwang91/nvim-ufo",
+    dependencies = "kevinhwang91/promise-async",
+    lazy = false,
+    priority = 1000,
+    config = function()
+      require("ufo").setup({
+        provider_selector = function(bufnr, filetype, buftype)
+          if filetype == "markdown" then
+            return { "treesitter", "indent" }
+          end
+          return { "treesitter", "indent" }
+        end
+      })
+    end,
+  },
+
   {
     "coder/claudecode.nvim",
     lazy = false,
@@ -205,8 +224,6 @@ return {
       })
     end,
   },
-
-
 
 
   {
