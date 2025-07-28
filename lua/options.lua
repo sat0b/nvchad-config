@@ -15,3 +15,10 @@ o.foldcolumn = '0'  -- Hide fold column (no +/- or numbers)
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.foldenable = true
+
+-- Persist fold states
+o.viewoptions = 'cursor,folds,slash,unix'
+o.sessionoptions = 'blank,buffers,curdir,folds,help,tabpages,winsize,terminal'
+
+-- Load fold persistence configuration
+require("configs.fold-persistence")

@@ -107,6 +107,7 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
+
 -- Export the fold_text function for use in foldtext option
 return {
   fold_text = markdown_fold_text
